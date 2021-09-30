@@ -11,35 +11,30 @@
 <body>
 	<div class="screen">
 		<h1>Aim Training</h1>
-		<a href="#" class="start" id="start-btn">Начать игру</a>
+		<a href="#" class="start third" id="start-btn">Начать игру</a>
 	</div>
 
 	<div class="screen">
 		<h1>Выберите время</h1>
 		<ul class="time-list" id="time-list">
 			<li>
-				<button class="time-btn" data-time="3">
+				<button class="time-btn third" data-time="3">
 					3 сек
 				</button>
 			</li>
 			<li>
-				<button class="time-btn" data-time="10">
+				<button class="time-btn third" data-time="10">
 					10 сек
 				</button>
 			</li>
 			<li>
-				<button class="time-btn" data-time="20">
+				<button class="time-btn third" data-time="20">
 					20 сек
 				</button>
 			</li>
 			<li>
-				<button class="time-btn" data-time="30">
+				<button class="time-btn third" data-time="30">
 					30 сек
-				</button>
-			</li>
-			<li>
-				<button class="time-btn" data-time="40">
-					40 сек
 				</button>
 			</li>
 		</ul>
@@ -49,6 +44,13 @@
 		<h3>Осталось <span id="time">00:00</span></h3>
 		<div class="board" id="board"></div>
 	</div>
+
+
+	<div class="screen" id="finish-game">
+		<button class="btn third" id="btn-restart">Перезапуск</button>
+		<div id="count-game"></div>
+	</div>
+
 
 	<script src="app.js"></script>
 </body>

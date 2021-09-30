@@ -3,10 +3,15 @@ const screens = document.querySelectorAll('.screen');
 const timeList = document.querySelector('#time-list');
 const timeOnBoard = document.querySelector('#time');
 const gameBoard = document.querySelector('#board');
-const rezetGame = document.querySelector('#rezet-game');
+const finishGameBoard = document.querySelector('#finish-game')
+const resetGame = document.querySelector('#reset-game');
+const countGame = document.querySelector('#count-game');
+const btnRestart = document.querySelector('#btn-restart')
+
 
 let checkGame = 0;
 let timeGame = 0;
+let timeInterval;
 
 startBtn.addEventListener('click', (e) => {
 	e.preventDefault();
@@ -30,21 +35,20 @@ gameBoard.addEventListener('click', (e) => {
 })
 
 function startGame() {
-	setInterval(decreaseTime, 1000);
+	timeInterval = setInterval(decreaseTime, 1000);
 	setTime(timeGame);
 	createRandomCircle();
 }
 
 function decreaseTime() {
 	let current = --timeGame;
-	if (current >= 0) {
-		if (current < 10) {
-			current = `0${current}`
-		}
-		setTime(current)
-	} else {
+	if (current === 0) {
 		finishGame()
 	}
+	if (current < 10) {
+		current = `0${current}`
+	}
+	setTime(current)
 }
 
 function createRandomCircle() {
@@ -65,15 +69,24 @@ function createRandomCircle() {
 }
 
 function setTime(value) {
-	timeOnBoard.innerHTML = `00:${value}`
+	timeOnBoard.innerHTML = `00:${value}`;
 }
 
 function getRandomNumber(min, max) {
 	return Math.floor(min + Math.random() * (max + 1 - min))
 }
 
-
 function finishGame() {
-	gameBoard.innerHTML = `<h1>Счет: <span class="primary">${checkGame}</span></h1>`
-	timeOnBoard.parentNode.classList.add('hide')
+	screens[2].classList.add('up');
+	countGame.innerHTML = `<h1>Счет: <span class="primary">${checkGame}</span></h1>`
+	clearInterval(timeInterval)
 }
+
+btnRestart.addEventListener('click', () => {
+	for (let screen of screens) {
+		screen.classList.remove('up');
+	}
+	checkGame = 0;
+	screens[0].classList.add('up');
+	gameBoard.innerHTML = '';
+})
