@@ -36,11 +36,11 @@ gameBoard.addEventListener('click', (e) => {
 
 function startGame() {
 	timeInterval = setInterval(decreaseTime, 1000);
-	setTime(timeGame);
 	createRandomCircle();
 }
 
 function decreaseTime() {
+	setTime(timeGame);
 	let current = --timeGame;
 	if (current === 0) {
 		finishGame()
