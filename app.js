@@ -3,10 +3,10 @@ const screens = document.querySelectorAll('.screen');
 const timeList = document.querySelector('#time-list');
 const timeOnBoard = document.querySelector('#time');
 const gameBoard = document.querySelector('#board');
-const finishGameBoard = document.querySelector('#finish-game')
+const finishGameBoard = document.querySelector('#finish-game');
 const resetGame = document.querySelector('#reset-game');
 const countGame = document.querySelector('#count-game');
-const btnRestart = document.querySelector('#btn-restart')
+const btnRestart = document.querySelector('#btn-restart');
 
 
 let checkGame = 0;
@@ -16,7 +16,7 @@ let timeInterval;
 startBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	screens[0].classList.add('up');
-})
+});
 
 timeList.addEventListener('click', (e) => {
 	if (e.target.classList.contains('time-btn')) {
@@ -24,7 +24,7 @@ timeList.addEventListener('click', (e) => {
 		screens[1].classList.add('up');
 		startGame();
 	}
-})
+});
 
 gameBoard.addEventListener('click', (e) => {
 	if (e.target.classList.contains('circle')) {
@@ -32,7 +32,7 @@ gameBoard.addEventListener('click', (e) => {
 		e.target.remove();
 		createRandomCircle();
 	}
-})
+});
 
 function startGame() {
 	timeInterval = setInterval(decreaseTime, 1000);
@@ -43,12 +43,12 @@ function decreaseTime() {
 	setTime(timeGame);
 	let current = --timeGame;
 	if (current === 0) {
-		finishGame()
+		finishGame();
 	}
 	if (current < 10) {
-		current = `0${current}`
+		current = `0${current}`;
 	}
-	setTime(current)
+	setTime(current);
 }
 
 function createRandomCircle() {
@@ -60,7 +60,7 @@ function createRandomCircle() {
 	let y = getRandomNumber(1, width - sizeCircle);
 	circle.classList.add('circle');
 	circle.style.background = color;
-	circle.style.boxShadow = `0 0 2px ${color}, 0 0 5px ${color}`
+	circle.style.boxShadow = `0 0 2px ${color}, 0 0 5px ${color}`;
 	circle.style.height = `${sizeCircle}px`;
 	circle.style.width = `${sizeCircle}px`;
 	circle.style.top = `${y}px`;
@@ -73,13 +73,13 @@ function setTime(value) {
 }
 
 function getRandomNumber(min, max) {
-	return Math.floor(min + Math.random() * (max + 1 - min))
+	return Math.floor(min + Math.random() * (max + 1 - min));
 }
 
 function finishGame() {
 	screens[2].classList.add('up');
-	countGame.innerHTML = `<h1>Счет: <span class="primary">${checkGame}</span></h1>`
-	clearInterval(timeInterval)
+	countGame.innerHTML = `<h1>Счет: <span class="primary">${checkGame}</span></h1>`;
+	clearInterval(timeInterval);
 }
 
 btnRestart.addEventListener('click', () => {
@@ -89,4 +89,4 @@ btnRestart.addEventListener('click', () => {
 	checkGame = 0;
 	screens[0].classList.add('up');
 	gameBoard.innerHTML = '';
-})
+});
