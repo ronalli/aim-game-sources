@@ -8,7 +8,6 @@ const resetGame = document.querySelector('#reset-game');
 const countGame = document.querySelector('#count-game');
 const btnRestart = document.querySelector('#btn-restart');
 
-
 let checkGame = 0;
 let timeGame = 0;
 let timeInterval;
